@@ -33,11 +33,21 @@ $Equipages = afficher();
 
   <!-- Main section -->
   <main>
-
+<?php
+if (isset($_POST['envoyer'])) {
+  if (isset($_POST['name'])) {
+    if (!empty($_POST['name']))
+      $name = htmlspecialchars(strip_tags($_POST['name']));
+    ajouter($name);
+    header("Location: index.php");
+    
+  }
+}
+?>
     <!-- New member form -->
     <h2>Ajouter un(e) Argonaute</h2>
     <form method="post" class="new-member-form">
-      <label for="name">Nom de l'Argonaute</label>
+      <label for="nom">Nom de l'Argonaute</label>
       <input name="name" type="text" placeholder="Charalampos" />
       <button type="submit" name="envoyer" class="btn btn-success">Envoyer</button>
     </form>
@@ -70,12 +80,3 @@ $Equipages = afficher();
 
 </html>
 
-<?php
-if (isset($_POST['envoyer'])) {
-  if (isset($_POST['name'])) {
-    if (!empty($_POST['name']))
-      $name = htmlspecialchars(strip_tags($_POST['name']));
-    ajouter($name);
-  }
-}
-?>
